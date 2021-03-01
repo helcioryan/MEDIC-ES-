@@ -1,0 +1,25 @@
+import plotly
+import pandas as pd
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
+import numpy as np
+
+fig = make_subplots(rows=2, cols=1, vertical_spacing= 0.5)
+
+bd = pd.read_csv("https://raw.githubusercontent.com/helcioryan/MEDIC-ES-/main/23-05")
+
+
+
+
+fig.add_trace(go.Scatter(x=bd['Date/Time'], y=bd['0144341825 - Volts A-N'], name= 'Tensão - Fase A',mode= 'lines+markers', marker={"color":"green"}, hovertemplate="%{data}"),row=1, col=1)
+fig.add_trace(go.Scatter(x=bd['Date/Time'], y=bd['0144341825 - Amps A'],name= 'Corrente - Fase A', mode= 'lines+markers'), row=2, col=1)
+data = ('Date/Time')
+fig.update_xaxes(showgrid=False, gridwidth=1, gridcolor='black',
+                showline=True, linewidth=5, linecolor='black',
+                range=[0,6],
+
+)
+
+fig.update_yaxes(showgrid=False, gridwidth=1, gridcolor='black',)
+
+fig.show()
